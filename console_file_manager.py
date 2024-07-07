@@ -2,8 +2,8 @@
 # cd c:\python_developer
 # cd d:\python_developer
 # .\pydev\Scripts\activate
-# cd c:\python_developer\python_developer_lesson06
-# cd d:\python_developer\python_developer_lesson06
+# cd c:\python_developer\python_developer_lesson07_task2
+# cd d:\python_developer\python_developer_lesson07_task2
 #~~~~~~~~~~~~~~~~~~~~~~~~
 # python console_file_manager.py
 #~~~~~~~~~~~~~~~~~~~~~~~~
@@ -158,6 +158,29 @@ def play_quiz_09(selected_people, answer_lst) -> int:
   return correct_answers
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#~ 11
+# 6. Добавить пункт "сохранить содержимое рабочей директории в файл";
+# Функция для сохранения содержимого рабочей директории в файл listdir.txt
+def save_directory_contents_to_file():
+  prog_path = os.getcwd()
+  fname = os.path.join(prog_path, "listdir.txt")
+  #~~~~~~~~~~~~~~~~~~~~~~~~
+  files = []
+  dirs = []
+  #~~~~~~~~~~~~~~~~~~~~~~~~
+  #~ получаем список файлов и папок в рабочей директории
+  for item in os.listdir():
+    if os.path.isfile(item):
+      files.append(item)
+    elif os.path.isdir(item):
+      dirs.append(item)
+  #~~~~~~~~~~~~~~~~~~~~~~~~
+  #~ Записываем содержимое в файл listdir.txt
+  with open(fname, "w") as file:
+    file.write("files: " + ", ".join(files) + "\n")
+    file.write("dirs: " + ", ".join(dirs))
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 if __name__ == '__main__':
   while True:
     print()
@@ -172,7 +195,8 @@ if __name__ == '__main__':
     print('8. Создатель программы')
     print('9. Играть в викторину')
     print('10. Мой банковский счет')
-    print('11. Выход')
+    print('11. Cохранить содержимое рабочей директории в файл')
+    print('12. Выход')
     #~~~~~~~~~~~~~~~~~~~~~~~~
     choice = input("Выберите пункт меню: ")
     if choice == '1':
@@ -231,6 +255,8 @@ if __name__ == '__main__':
       elif choice10 == '3':
         print(f'История покупок: {history}')
     elif choice == '11':
+      save_directory_contents_to_file()
+    elif choice == '12':
       break
     else:
       print('Неверный пункт меню')
