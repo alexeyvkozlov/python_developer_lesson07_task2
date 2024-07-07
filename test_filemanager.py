@@ -39,3 +39,6 @@ answer_lst = ["27.01.1756"]
 
 #~ Добавляем assert для проверки функции play_quiz_09
 assert play_quiz_09(selected_people, answer_lst) == 1
+
+#~ Проверяем, что файл listdir.txt был создан
+assert os.path.exists("listdir.txt")
